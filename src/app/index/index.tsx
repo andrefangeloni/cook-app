@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Alert, ScrollView, Text, View } from 'react-native'
+import { router } from 'expo-router'
 
 import { Ingredient, Selected } from '@/components'
 
@@ -23,6 +24,10 @@ const App = () => {
       { text: 'Não', style: 'cancel' },
       { text: 'Sim', onPress: () => setSelected([]) },
     ])
+  }
+
+  const handleSearch = () => {
+    router.navigate('/recipes')
   }
 
   return (
@@ -55,7 +60,7 @@ const App = () => {
         <Selected
           quantity={selected.length}
           onClear={onClearSelected}
-          onSearch={() => null}
+          onSearch={handleSearch}
         />
       ) : null}
     </View>
