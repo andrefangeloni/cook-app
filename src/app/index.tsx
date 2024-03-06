@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Alert, ScrollView, Text, View } from 'react-native'
 
-import { Ingredient } from '@/components'
+import { Ingredient, Selected } from '@/components'
 
 import { styles } from './styles'
 
@@ -16,6 +16,13 @@ const App = () => {
     } else {
       setSelected([...selected, value])
     }
+  }
+
+  const onClearSelected = () => {
+    Alert.alert('Atenção', 'Deseja limpar tudo?', [
+      { text: 'Não', style: 'cancel' },
+      { text: 'Sim', onPress: () => setSelected([]) },
+    ])
   }
 
   return (
@@ -43,6 +50,14 @@ const App = () => {
           />
         ))}
       </ScrollView>
+
+      {selected.length > 0 ? (
+        <Selected
+          quantity={selected.length}
+          onClear={onClearSelected}
+          onSearch={() => null}
+        />
+      ) : null}
     </View>
   )
 }
