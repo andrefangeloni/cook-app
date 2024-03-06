@@ -23,4 +23,10 @@ export const styles = StyleSheet.create({
     fontSize: theme.fonts.size.body.md,
     fontFamily: theme.fonts.family.regular,
   },
+  ingredients: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    paddingBottom: 200,
+    gap: 12,
+  },
 })
