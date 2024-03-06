@@ -1,11 +1,11 @@
-import { supabase } from "./supabase"
+import { supabase } from './supabase'
 
 async function findByIds(ids: string[]) {
   const { data } = await supabase
-    .from("ingredients")
+    .from('ingredients')
     .select()
-    .in("id", ids)
-    .order("name")
+    .in('id', ids)
+    .order('name')
     .returns<IngredientResponse[]>()
 
   return data ?? []
@@ -13,9 +13,9 @@ async function findByIds(ids: string[]) {
 
 async function findByRecipeId(id: string) {
   const { data } = await supabase
-    .from("recipes_ingredients")
-    .select("ingredients (id, name, image)")
-    .eq("recipe_id", id)
+    .from('recipes_ingredients')
+    .select('ingredients (id, name, image)')
+    .eq('recipe_id', id)
     .returns<{ ingredients: IngredientResponse }[]>()
 
   return data ? data.map((item) => item.ingredients) : []
@@ -23,9 +23,9 @@ async function findByRecipeId(id: string) {
 
 async function findAll() {
   const { data } = await supabase
-    .from("ingredients")
+    .from('ingredients')
     .select()
-    .order("name")
+    .order('name')
     .returns<IngredientResponse[]>()
 
   return data ?? []
